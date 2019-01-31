@@ -1,0 +1,17 @@
+---
+
+imports:
+  sample_app|export|drop: '.'
+
+git module sample_app:
+  url: 'https://github.com/GoogleCloudPlatform/continuous-deployment-on-kubernetes.git'
+
+rule export:
+  export: 'sample-app'
+
+rule drop:
+  drop:
+    - 'Jenkinsfile'
+    - 'k8s'
+
+#  vim: set ft=yaml ts=4 sw=2 tw=0 et :
