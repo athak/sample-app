@@ -1,7 +1,7 @@
 ---
 
 imports:
-  upstream|u_e|u_d: '.'
+  upstream|u_e|u_d: './'
 
 git module upstream:
   url: 'https://github.com/GoogleCloudPlatform/continuous-deployment-on-kubernetes.git'
