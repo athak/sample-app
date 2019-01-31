@@ -1,15 +1,15 @@
 ---
 
 imports:
-  upstream|export|drop: '.'
+  upstream|u_e|u_d: '.'
 
 git module upstream:
   url: 'https://github.com/GoogleCloudPlatform/continuous-deployment-on-kubernetes.git'
 
-rule export:
+rule u_e:
   export: 'sample-app'
 
-rule drop:
+rule u_d:
   drop:
     - 'Jenkinsfile'
     - 'k8s'
