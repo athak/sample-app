@@ -1,9 +1,9 @@
 ---
 
 imports:
-  sample_app|export|drop: '.'
+  upstream|export|drop: '.'
 
-git module sample_app:
+git module upstream:
   url: 'https://github.com/GoogleCloudPlatform/continuous-deployment-on-kubernetes.git'
 
 rule export:
