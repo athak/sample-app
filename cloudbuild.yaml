@@ -1,0 +1,28 @@
+---
+
+steps:
+  - name: 'gcr.io/cloud-builders/go'
+    args:
+      - 'install'
+      - 'app'
+    env:
+      - 'PROJECT_ROOT=app'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/gceme:$BUILD_ID'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/gceme'
+      - '.'
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args:
+      - 'cp'
+      - 'gopath/bin/app'
+      - 'gs://toptal-test-build/bin/app-$BUILD_ID'
+
+images:
+  - 'gcr.io/$PROJECT_ID/gceme:latest'
+  - 'gcr.io/$PROJECT_ID/gceme:$BUILD_ID'
+
+# vim: set ft=yaml ts=4 sw=2 tw=0 et :
