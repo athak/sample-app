@@ -6,6 +6,7 @@ steps:
       - 'install'
       - 'app'
     env:
+      - 'CGO_ENABLED=0'
       - 'PROJECT_ROOT=app'
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -19,7 +20,12 @@ steps:
     args:
       - 'cp'
       - 'gopath/bin/app'
-      - 'gs://toptal-test-build/bin/app-$BUILD_ID'
+      - 'gs://toptal-test-build/bin/app'
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['set', 'image', 'deployment/gceme', 'frontend=gcr.io/$PROJECT_ID/gceme:$BUILD_ID']
+    env:
+    - 'CLOUDSDK_COMPUTE_ZONE=us-east1-c'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=nomad'
 
 images:
   - 'gcr.io/$PROJECT_ID/gceme:latest'
